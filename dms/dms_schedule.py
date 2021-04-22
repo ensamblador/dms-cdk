@@ -20,7 +20,7 @@ from project_config import (
 
 class Schedule(core.Construct):
 
-    def __init__(self, scope: core.Construct, construct_id: str, crawler,  task,  **kwargs) -> None:
+    def __init__(self, scope: core.Construct, construct_id: str,  task,  **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
         
         lambda_start_dms_task = _lambda.Function(

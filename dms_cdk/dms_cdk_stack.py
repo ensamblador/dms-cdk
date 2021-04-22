@@ -13,7 +13,10 @@ from dms.dms_instance import DMSInstance
 from dms.dms_endpoint import DMSEndpoints
 from dms.dms_task import DMSTask
 from dms.dms_event_subscription import DMSEventSubscription
+from dms.dms_schedule import Schedule
 from glue.processing import Discover
+from glue.processing import Process
+
 
 class DmsCdkStack(cdk.Stack):
 
@@ -21,14 +24,21 @@ class DmsCdkStack(cdk.Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         instance_construct = DMSInstance(self, "InstanceContruct")
+
         target_bucket = s3.Bucket(self, "targetbucket")
+        processed_bucket = s3.Bucket(self, "processedbucket")
+
         sns_topic = sns.Topic(self, 'dms-topic', display_name='Eventos de DMS')
 
         dms_endpoints = DMSEndpoints(self, "endpoints", target_bucket=target_bucket)
+
         dms_task = DMSTask(
             self, "task", dms_instance=instance_construct.instance, 
             source_endpoint=dms_endpoints.source, target_endpoint=dms_endpoints.target )
+        
         subs = DMSEventSubscription (self, 'evn-subs', sns_topic=sns_topic)
 
         discover = Discover(self, 'discover', sns_topic=sns_topic, dms_instance=instance_construct.instance, dms_task=dms_task.task, bucket=target_bucket)
-        # The code that defines your stack goes here
+        process  = Process(self, 'process', crawler=discover.crawler)
+
+        Schedule(self, 'schedule', task=dms_task.task)

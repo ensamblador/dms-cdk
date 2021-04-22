@@ -85,7 +85,7 @@ class Process(core.Construct):
         )
 
         lambda_post_crawler.add_to_role_policy( iam.PolicyStatement(actions=["glue:*"], resources=['*']))
-
+        
 
         event_rule = events.Rule(self, 'gluecrawlerfinish',description='Glue Crawler',
             event_pattern=events.EventPattern(source=['aws.glue'],
