@@ -1,0 +1,11 @@
+DMS_INSTANCE_CLASS = 'dms.t3.medium' 
+DMS_STORAGE = 50 
+VPC_NAME = 'Default' 
+SQLSERVER_IP_OR_NAME = '10.0.0.1'
+SQLSERVER_PORT = 1433
+SQLSERVER_USER = 'admin'
+SQLSERVER_PASSWORD = 'admin'
+DATABASE_NAME = 'dbo'
+BUCKET_PATH = 'sqlserver_dump'
+MIGRATION_TYPE = 'full-load' #Valid values: full-load | cdc | full-load-and-cdc
+GLUE_DATABASE_NAME = 'sqlserver'
