@@ -47,5 +47,36 @@
         ]
       }
     ]
+  },
+  "vpc-provider:account=625806755153:filter.tag:Name=SQLServer-DmsVpc:region=us-east-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-00f0ef7b945b989cc",
+    "vpcCidrBlock": "10.20.0.0/16",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-02aecbedcd5f4da95",
+            "cidr": "10.20.1.0/24",
+            "availabilityZone": "us-east-1a",
+            "routeTableId": "rtb-0513a7119fff58320"
+          },
+          {
+            "subnetId": "subnet-0c8087ba1f71f191a",
+            "cidr": "10.20.2.0/24",
+            "availabilityZone": "us-east-1b",
+            "routeTableId": "rtb-0513a7119fff58320"
+          },
+          {
+            "subnetId": "subnet-08b7ee7bcfeb800ab",
+            "cidr": "10.20.3.0/24",
+            "availabilityZone": "us-east-1c",
+            "routeTableId": "rtb-0513a7119fff58320"
+          }
+        ]
+      }
+    ]
   }
 }

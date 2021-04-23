@@ -51,5 +51,6 @@ class DMSEndpoints(core.Construct):
             s3_settings= dms.CfnEndpoint.S3SettingsProperty(
                 service_access_role_arn = service_role.role_arn,
                 bucket_name = target_bucket.bucket_name,
-                bucket_folder=BUCKET_PATH)
+                bucket_folder=BUCKET_PATH),
+            extra_connection_attributes = 'dataFormat=parquet;addColumnName=true;'
         )

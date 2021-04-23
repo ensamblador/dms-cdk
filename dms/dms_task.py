@@ -40,8 +40,8 @@ class DMSTask(core.Construct):
                 "rule-id": "1",
                 "rule-name": "1",
                 "object-locator": {
-                    "schema-name": "%",
-                    "table-name": "%"
+                    "schema-name": "dbo",
+                    "table-name": "sport%"
                 },
                 "rule-action": "include"
                 }]

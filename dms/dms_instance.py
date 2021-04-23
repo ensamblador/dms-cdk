@@ -49,6 +49,7 @@ class DMSInstance(core.Construct):
             replication_subnet_group_identifier =sn_groups.replication_subnet_group_identifier,
             vpc_security_group_ids = [self.sec_group.security_group_id],
             replication_instance_identifier='SQL-2-S3')
-
+            
+        replication_instance.add_depends_on(sn_groups)
         self.instance = replication_instance
 

@@ -39,6 +39,9 @@ class DmsCdkStack(cdk.Stack):
         subs = DMSEventSubscription (self, 'evn-subs', sns_topic=sns_topic)
 
         discover = Discover(self, 'discover', sns_topic=sns_topic, dms_instance=instance_construct.instance, dms_task=dms_task.task, bucket=target_bucket)
-        process  = Process(self, 'process', crawler=discover.crawler)
+        process  = Process(
+            self, 'process', crawler=discover.crawler, source_bucket=target_bucket,
+            processed_bucket= processed_bucket
+        )
 
         Schedule(self, 'schedule', task=dms_task.task)
